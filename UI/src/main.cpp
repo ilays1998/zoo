@@ -4,14 +4,17 @@
 
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
+#include <filesystem>
+namespace fs = std::filesystem;
 
 int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
-
     QQmlApplicationEngine engine;
-    const QUrl url(u"qrc:/hello/main.qml"_qs);
+    auto qml_main = fs::path(__FILE__).parent_path() / "TextInput.qml";
+    const QUrl url(QString::fromStdString(qml_main.string()));
     engine.load(url);
 
     return app.exec();
+    ;
 }
