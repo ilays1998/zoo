@@ -6,11 +6,32 @@ ApplicationWindow {
     width: 400
     height: 400
     title: "inputText"
-
+    id: root
     Column {
+        id: col
+        anchors.right: parent.right
+        anchors.margins: 0
         width: 200; height: 200
 
         TextInput{id: myTextInput;  text: "Hello World"}
-        Text { text: myTextInput.text}
+        Text {
+            text: myTextInput.text
+            property string nextText: "abba"
+        }
+    }
+    Rectangle {
+        visible: true
+        id: rect
+        anchors { horizontalCenter: parent.horizontalCenter; top: parent.top; topMargin: 20 }
+        width: col.width / 2; height: 200
+        property group gr
+        color: "red"
+
+        property color previousColor: "black"
+        property color nextColor
+        nextColor: "blue"
+
+        property var someList: [1, 2, "three", "four"]
+        onNextColorChanged: console.log("the next color will be: " + nextColor.toString())
     }
 }
