@@ -10,8 +10,11 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(Qt6 COMPONENTS Quick Core REQUIRED)
 qt_standard_project_setup()
 add_executable(helloworld
-
-        src/main.cpp
+        src/SimpleZooModel.cpp
+        src/SimpleZooModel.h
+        src/Animal.cpp
+        src/Animal.h
+        src/zooMain.cpp
 )
 
 target_link_libraries(helloworld Qt6::Quick Qt6::Core )

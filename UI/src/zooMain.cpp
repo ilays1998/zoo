@@ -6,6 +6,7 @@
 #include <QtQml>
 #include <QObject>
 #include "SimpleZooModel.h"
+#include "Animal.h"
 #include <QAbstractItemModel>
 #include <filesystem>
 
@@ -19,9 +20,10 @@ int main(int argc, char *argv[])
     // under the name "DataEntryModel"
     SimpleZooModel zoo_model;
     QQmlApplicationEngine engine;
-    auto qml_main = fs::path(__FILE__).parent_path() / "SimpleZooModel.qml";
+    auto qml_main = fs::path(__FILE__).parent_path() / "zooImage.qml";
     const QUrl url(QString::fromStdString(qml_main.string()));
     engine.rootContext()->setContextProperty("zooModel", &zoo_model);
+
     engine.load(QUrl(QString::fromStdString(qml_main.string())));
     return app.exec();
 }

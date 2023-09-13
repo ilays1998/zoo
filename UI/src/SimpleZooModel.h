@@ -3,35 +3,36 @@
 #include <QtGui>
 #include <QObject>
 #include <QtQml>
+#include "Animal.h"
 
 class SimpleZooModel : public QAbstractListModel
 {
 
-Q_OBJECT
+    Q_OBJECT
+    //Q_PROPERTY(Animal* animal WRITE appendAnimal NOTIFY animalChanged)
 
-    struct Animal{
-        QString name;
-        int age;
-        int weight;
-        QString food;
-    };
 
-public:
-    enum AnimalAttributes {
-    age = Qt::UserRole,
-    weight = Qt::UserRole + 1,
-    food = Qt::UserRole + 2,
-};
+signals:
+    void animalChanged();
+
+
 public: // QAbstractItemModel interface
+    enum RoleNames {
+        animal = Qt::UserRole,
+//        age = Qt::UserRole+2,
+//        weight = Qt::UserRole+3,
+//        food = Qt::UserRole+4
+    };
     explicit SimpleZooModel(QObject *parent = nullptr);
 ~SimpleZooModel() override;
     virtual int rowCount(const QModelIndex &parent) const;
     virtual QVariant data(const QModelIndex &index, int role) const;
-    //Q_INVOKABLE void insert(QString nameAnimal, QList<QString> *list);
     QHash<int, QByteArray> roleNames() const override;
+//    Q_INVOKABLE void appendAnimal(Animal *a);
+//    Q_INVOKABLE QString animals();
 //protected:
 private:
     QHash<int ,QByteArray> m_map_data;
-    QList<Animal> m_data;
+    std::vector<Animal*> m_data;
     //QString convertToString(QMap<QList<QString>, QString> map) const;
 };

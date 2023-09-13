@@ -15,20 +15,26 @@ ApplicationWindow {
 
         TextInput{id: myTextInput;  text: "Hello World"}
         Text {
+            id: txt
             text: myTextInput.text
             property string nextText: "abba"
         }
     }
     Rectangle {
+        Rectangle {
+            visible: true
+            id: sonRect
+            color: "red"
+
+        }
         visible: true
         id: rect
         anchors { horizontalCenter: parent.horizontalCenter; top: parent.top; topMargin: 20 }
         width: col.width / 2; height: 200
-        property group gr
         color: "red"
-
         property color previousColor: "black"
         property color nextColor
+        property alias qm: sonRect.color
         nextColor: "blue"
 
         property var someList: [1, 2, "three", "four"]

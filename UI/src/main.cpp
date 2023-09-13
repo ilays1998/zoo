@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
     QQmlApplicationEngine engine;
-    auto qml_main = fs::path(__FILE__).parent_path() / "TextInput.qml";
+    auto qml_main = fs::path(__FILE__).parent_path() / "zooImage.qml";
     const QUrl url(QString::fromStdString(qml_main.string()));
     engine.load(url);
 
