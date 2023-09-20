@@ -7,7 +7,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 
 
-find_package(Qt6 COMPONENTS Quick Core REQUIRED)
+find_package(Qt6 COMPONENTS Core Quick REQUIRED)
 qt_standard_project_setup()
 add_executable(helloworld
         src/SimpleZooModel.cpp
@@ -17,4 +17,4 @@ add_executable(helloworld
         src/zooMain.cpp
 )
 
-target_link_libraries(helloworld Qt6::Quick Qt6::Core )
+target_link_libraries(helloworld Qt6::Core Qt6::Quick)
