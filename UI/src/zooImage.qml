@@ -42,6 +42,28 @@ ApplicationWindow {
                     textTxt: model.animal.name
                     src: "pictures/snakeImage.png"
                     image: true
+
+                    //TODO: append the image to the property of the model and change the code to represent animal special picture
+
+                    // Item {
+                    //
+                    //     Download {
+                    //
+                    //         url: "http://placehold.it/350x150"
+                    //         destination: "file:///tmp/test.png"
+                    //
+                    //         running: true
+                    //
+                    //         followRedirects: true
+                    //         onRedirected: console.log('Redirected',url,'->',redirectUrl)
+                    //
+                    //         onStarted: console.log('Started download',url)
+                    //         onError: console.error(errorString)
+                    //         onProgressChanged: console.log(url,'progress:',progress)
+                    //         onFinished: console.info(url,'done')
+                    //
+                    //     }
+                    // }
                 }
             }
 

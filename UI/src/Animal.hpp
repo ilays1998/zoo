@@ -40,10 +40,10 @@ public:
 //    QString getFood() const;
 //    void setFood(const QString& f);
 //    void setWeight(int w);
+    QString m_image;
 private:
     QString m_name;
     int m_age;
-    QString m_image;
 
     //TODO: memory leak possible
     QObject* m_metadata;

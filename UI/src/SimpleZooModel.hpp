@@ -56,5 +56,4 @@ private:
     QNetworkRequest m_request;
     QByteArray m_doc;
     //QString convertToString(QMap<QList<QString>, QString> map) const;
-    void static downloadFinished();
 };

@@ -46,57 +46,22 @@ SimpleZooModel::SimpleZooModel(QObject *parent) : QAbstractListModel(parent) {
 
 
 
+    //picture from the web
 
 
-//    //picture from the web
-//    QObject::connect(m_manager, &QNetworkAccessManager::finished, this, SimpleZooModel::downloadFinished);
-//    const QUrl url = QUrl("http://computer/a.jpg");
-//    QNetworkRequest request(url);
-//    nam->get(request);
-//    reply->deleteLater();
 
+    reply->deleteLater();
     }
     );
 
 
 }
 
-//void SimpleZooModel::downloadFinished()
-//{
-//    QPixmap pm;
-//    pm.loadFromData(reply->readAll());
-//    ui->label->setPixmap(pm);
-//}
+
 //SimpleZooModel::SimpleZooModel(QObject *parent)
 //        : QAbstractListModel(parent)
 //{
-//
-//    m_data.push_back(new Animal{"tiger", "beef", 20,new Metadata("Eukaryota",
-//    "Animalia",
-//    "Chordata",
-//    "Maammalia",
-//    "Carnivora",
-//    "Ursidea", nullptr), nullptr});
-//    m_data.push_back(new Animal{"lion", "beef", 20,new Metadata("Eukaryota",
-//                                                                "Animalia",
-//                                                                "Chordata",
-//                                                                "Maammalia",
-//                                                                "Carnivora",
-//                                                                "Ursidea", nullptr), nullptr});
-//    m_data.push_back(new Animal{"elephant", "beef", 20,new Metadata("Eukaryota",
-//                                                                    "Animalia",
-//                                                                    "Chordata",
-//                                                                    "Maammalia",
-//                                                                    "Carnivora",
-//                                                                    "Ursidea", nullptr), nullptr});
-//    m_data.push_back(new Animal{"ant", "beef", 20,new Metadata("Eukaryota",
-//                                                               "Animalia",
-//                                                               "Chordata",
-//                                                               "Maammalia",
-//                                                               "Carnivora",
-//                                                               "Ursidea", nullptr), nullptr});
-//
-//
+
 //    m_map_data[animal] = "animal";
 ////    m_map_data[age] = "age";
 ////    m_map_data[weight] = "weight";
