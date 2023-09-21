@@ -5,8 +5,8 @@
 #include <QtGui>
 #include <QtQml>
 #include <QObject>
-#include "SimpleZooModel.h"
-#include "Animal.h"
+#include "SimpleZooModel.hpp"
+#include "Animal.hpp"
 #include <QAbstractItemModel>
 #include <filesystem>
 
@@ -18,6 +18,8 @@ int main(int argc, char *argv[])
     // register the type DataEntryModel
     // under the url "org.example" in version 1.0
     // under the name "DataEntryModel"
+
+    //using the simple model
     SimpleZooModel zoo_model;
     QQmlApplicationEngine engine;
     auto qml_main = fs::path(__FILE__).parent_path() / "zooImage.qml";

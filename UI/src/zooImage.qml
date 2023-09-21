@@ -18,7 +18,7 @@ ApplicationWindow {
                 Image {
                     id: imageZoo
                     anchors.fill: parent;
-                    source: "zooImage.png"
+                    source: "pictures/zooImage.png"
                     visible: true
                 }
 
@@ -40,7 +40,7 @@ ApplicationWindow {
                     animal: model.animal
                     color: (model.animal.name === "t") ? "red" : "blue"
                     textTxt: model.animal.name
-                    src: "snakeImage.png"
+                    src: "pictures/snakeImage.png"
                     image: true
                 }
             }
