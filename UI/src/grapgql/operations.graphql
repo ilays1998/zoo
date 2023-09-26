@@ -1,0 +1,24 @@
+mutation RemoveAnimalByName($name: String!) {
+    removeAnimalByName(name: $name) {
+        error
+        data
+    }
+}
+
+query Qu {
+    animals {
+        id
+        name
+        age
+        image
+        metadata {
+            domain
+            kingdom
+            pyhlum
+            Class
+            superfamily
+            family
+        }
+    }
+}
+

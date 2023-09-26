@@ -7,10 +7,11 @@ license = "MIT"
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = ">=3.10"
+python = ">=3.10, <3.12"
 conan = "^2.0.10"
 aqtinstall = "^3.1.7"
 cmake = "^3.27.4.1"
+qtgql = {path = "qtgql"}
 
 
 [build-system]

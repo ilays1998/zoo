@@ -103,6 +103,7 @@ void SimpleZooModel::foo() {
             Animal* a = new Animal(data);
             beginInsertRows(QModelIndex(), m_data.size(), m_data.size());
             m_data.push_back(a);
+            endInsertRows();
             QModelIndex topLeft = createIndex(0, 0);
             QModelIndex bottomRight = createIndex(0, 1);
             //QObject::connect(a, SIGNAL(ageChanged()), this, SLOT(this->animalChanged()));
