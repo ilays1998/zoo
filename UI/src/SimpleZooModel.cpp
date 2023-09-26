@@ -5,22 +5,82 @@
 #include "SimpleZooModel.hpp"
 
 SimpleZooModel::SimpleZooModel(QObject *parent) : QAbstractListModel(parent) {
+
     m_manager = new QNetworkAccessManager(this);
 
+    foo();
+
+
+}
+
+void SimpleZooModel::deleteAnimal(QString name) {
+    QNetworkAccessManager * manager = new QNetworkAccessManager(this);
+    QNetworkRequest request;
+    QJsonObject mutationObject;
+    mutationObject["query"] = "mutation RemoveAnimalByName($name: String!) { removeAnimalByName(name: $name) { error data } }";
+    mutationObject["variables"] = QJsonObject{
+            {"name", name} // Replace 123 with the actual value for $pk
+    };
+    QByteArray doc = QJsonDocument(mutationObject).toJson();
+    request.setUrl(QUrl(URL_ADDRESS));
+    request.setRawHeader("Accept", HTTP_ACCEPT);
+    request.setRawHeader("Content-Type", HTTP_CONTENT_TYPE);
+    auto reply = manager->post(request,doc);
+
+    auto it = m_data.begin();
+    int index = 0;
+    while(it != m_data.end()) {
+        if (QString::compare((*it)->getName(), name) == 0) {
+            this->beginRemoveRows(QModelIndex(), index, index);
+            it = m_data.erase(it);
+            this->endRemoveRows();
+            index++;
+        }
+        else {
+            it++;
+            index++;
+        }
+    }
+
+    QObject::connect(reply, &QNetworkReply::finished,
+                     this, [=]() {
+                qDebug() << "arrived here";
+                if (reply->error()) {
+                    qDebug() << reply->errorString();
+                    return;
+                }
+
+                QByteArray answer = reply->readAll();
+                QJsonDocument qJsonDocument = QJsonDocument::fromJson(answer);
+                auto temp = qJsonDocument["data"]["error"];
+                qDebug() << temp.toArray();
+                if (qJsonDocument.isNull()) {
+                    qDebug() << reply->errorString();
+                    return;
+                }
+
+
+
+                reply->deleteLater();
+            }
+    );
+}
+
+void SimpleZooModel::foo() {
     QJsonObject jsonObject;
     jsonObject = {
             {"query","query{\n  animals{\n    id\n     name\n     age\n     image\n    metadata{\n      domain\n"
                      "      kingdom\n      pyhlum\n      Class\n      superfamily\n      family\n    }\n  }\n}"}
     };
     m_doc = QJsonDocument(jsonObject).toJson();
-    m_request.setUrl(QUrl("http://127.0.0.1:8000/graphql/"));
+    m_request.setUrl(QUrl(URL_ADDRESS));
     m_request.setRawHeader("Accept", HTTP_ACCEPT);
     m_request.setRawHeader("Content-Type", HTTP_CONTENT_TYPE);
-    auto reply = m_manager->post(m_request,m_doc);
+    auto reply = m_manager->post(m_request, m_doc);
 
     m_map_data[animal] = "animal";
 
-    QObject::connect(reply, &QNetworkReply::finished,
+    connect(reply, &QNetworkReply::finished,
                      this, [=]() {
                 qDebug() << "arrived here";
                 if (reply->error()) {
@@ -40,7 +100,13 @@ SimpleZooModel::SimpleZooModel(QObject *parent) : QAbstractListModel(parent) {
     for (const QJsonValue &jsonValue : temp.toArray()) {
         if (jsonValue.isObject()) {
             QJsonObject data = jsonValue.toObject();
-            m_data.push_back(new Animal(data));
+            Animal* a = new Animal(data);
+            beginInsertRows(QModelIndex(), m_data.size(), m_data.size());
+            m_data.push_back(a);
+            QModelIndex topLeft = createIndex(0, 0);
+            QModelIndex bottomRight = createIndex(0, 1);
+            //QObject::connect(a, SIGNAL(ageChanged()), this, SLOT(this->animalChanged()));
+            //a->ageChanged();
         }
     }
 
@@ -53,9 +119,8 @@ SimpleZooModel::SimpleZooModel(QObject *parent) : QAbstractListModel(parent) {
     reply->deleteLater();
     }
     );
-
-
 }
+
 
 
 //SimpleZooModel::SimpleZooModel(QObject *parent)

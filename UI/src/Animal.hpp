@@ -10,6 +10,7 @@
 #include <QtQml>
 #include <QString>
 #include "Metadata.hpp"
+#define URL_ADDRESS "http://127.0.0.1:8000/graphql/"
 
 
 class Animal: public QObject{
@@ -36,13 +37,20 @@ public:
     int getAge() const;
     void setAge(int a);
 
+
+private:
 //    int getWeight() const;
 //    QString getFood() const;
 //    void setFood(const QString& f);
 //    void setWeight(int w);
     QString m_image;
-private:
     QString m_name;
+public:
+    const QString &getName() const;
+
+    void setName(const QString &mName);
+
+private:
     int m_age;
 
     //TODO: memory leak possible

@@ -13,35 +13,47 @@ ApplicationWindow {
         anchors.fill: parent
 
     }
-        Component{id: splash_screen;
-            Item {
-                Image {
-                    id: imageZoo
-                    anchors.fill: parent;
-                    source: "pictures/zooImage.png"
-                    visible: true
-                }
+    Component {
+        id: splash_screen;
+        Item {
+            Image {
+                id: imageZoo
+                anchors.fill: parent;
+                source: "pictures/zooImage.png"
+                visible: true
+            }
 
-                TapHandler {
-                    onTapped: stack.push(animals_list)
-                }
+            TapHandler {
+                onTapped: stack.push(animals_list)
             }
         }
-        Component{id: animals_list
-            ListView {
-                id: view
-                implicitHeight: parent.height;
-                implicitWidth: parent.width;
-                model: zooModel;
-                delegate: Animal {
-                    width: ListView.view.width;
-                    height: 100;
-                    required property var model;
-                    animal: model.animal
-                    color: (model.animal.name === "t") ? "red" : "blue"
-                    textTxt: model.animal.name
-                    src: "pictures/snakeImage.png"
-                    image: true
+    }
+    Component {
+        id: animals_list
+        ListView {
+            id: view
+            implicitHeight: parent.height;
+            implicitWidth: parent.width;
+
+
+            model: zooModel
+
+            delegate: Animal {
+                width: ListView.view.width;
+                height: 200;
+                required property var model;
+                animal: model.animal
+                color: (model.animal.name === "t") ? "red" : "yellow"
+                textTxt: model.animal.name + "\nage: " + model.animal.age + "\nfamily: " +
+                    model.animal.metadata.family
+                src: model.animal.image
+                image: true
+                Button {
+                    text: "Delete animal"
+                    onClicked: {
+                        zooModel.deleteAnimal(model.animal.name);
+                        zooModel.foo();
+                    }
 
                     //TODO: append the image to the property of the model and change the code to represent animal special picture
 
@@ -68,6 +80,8 @@ ApplicationWindow {
             }
 
         }
+    }
+}
 
 
 
@@ -127,7 +141,7 @@ ApplicationWindow {
         // }
 
 
-    }
+
 
 
 

@@ -25,7 +25,7 @@ Rectangle {
     TapHandler{
 
         onTapped: {
-            console.log("fdsaf");
+            console.log("tapped");
 
             image.visible = !image.visible;
         }

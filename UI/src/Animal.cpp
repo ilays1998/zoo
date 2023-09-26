@@ -3,6 +3,8 @@
 //
 
 #include "Animal.hpp"
+inline const QByteArray HTTP_CONTENT_TYPE = "application/json";
+inline const QByteArray HTTP_ACCEPT = "application/graphql-response+json";
 
 Animal::Animal( QString name,QString image, int age, Metadata* metadata, QObject *parent = nullptr): QObject(parent) {
     m_name = name;
@@ -31,6 +33,16 @@ Animal::Animal(const QJsonObject &data) {
     QJsonObject temp = data["metadata"].toObject();
     m_metadata = static_cast<Metadata*>(new Metadata(temp));
 }
+
+const QString &Animal::getName() const {
+    return m_name;
+}
+
+void Animal::setName(const QString &mName) {
+    m_name = mName;
+}
+
+
 
 //int Animal::getWeight() const {
 //    return m_weight;

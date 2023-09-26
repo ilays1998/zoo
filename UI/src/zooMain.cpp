@@ -9,6 +9,7 @@
 #include "Animal.hpp"
 #include <QAbstractItemModel>
 #include <filesystem>
+#include <QListView>
 
 namespace fs = std::filesystem;
 int main(int argc, char *argv[])
@@ -24,8 +25,9 @@ int main(int argc, char *argv[])
     QQmlApplicationEngine engine;
     auto qml_main = fs::path(__FILE__).parent_path() / "zooImage.qml";
     const QUrl url(QString::fromStdString(qml_main.string()));
-    engine.rootContext()->setContextProperty("zooModel", &zoo_model);
 
+
+    engine.rootContext()->setContextProperty("zooModel", &zoo_model);
     engine.load(QUrl(QString::fromStdString(qml_main.string())));
     return app.exec();
 }

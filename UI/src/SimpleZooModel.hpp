@@ -7,6 +7,7 @@
 #include <QNetworkReply>
 #include "Animal.hpp"
 
+
 inline const QByteArray HTTP_CONTENT_TYPE = "application/json";
 inline const QByteArray HTTP_ACCEPT = "application/graphql-response+json";
 
@@ -17,15 +18,18 @@ class SimpleZooModel : public QAbstractListModel
     QML_ELEMENT
     //Q_PROPERTY(Animal* animal WRITE appendAnimal NOTIFY animalChanged)
 
-
 signals:
     void animalChanged();
+    void loadDataCompleted();
+public slots:
+    void foo();
 
 
 public: // QAbstractItemModel interface
 
-    SimpleZooModel(QObject *parent = nullptr);
 
+
+    SimpleZooModel(QObject *parent = nullptr);
 
     enum RoleNames {
         animal = Qt::UserRole,
@@ -39,7 +43,8 @@ public: // QAbstractItemModel interface
     QHash<int, QByteArray> roleNames() const override;
 
 //TODO: append integrative function, append another animal to the zoo, erase animal from the zoo
-//Q_INVOKABLE request_data
+
+    Q_INVOKABLE void deleteAnimal(QString name);
 
 //    Q_INVOKABLE void appendAnimal(Animal *a);
 //    Q_INVOKABLE QString animals();

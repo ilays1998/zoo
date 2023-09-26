@@ -17,8 +17,6 @@ add_executable(helloworld
         src/zooMain.cpp
         src/Metadata.cpp
         src/Metadata.hpp
-        src/WebPicture.cpp
-        src/WebPicture.hpp
 )
 
 target_link_libraries(helloworld Qt6::Core Qt6::Quick Qt6::Widgets Qt6::Network)
