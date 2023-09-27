@@ -1,6 +1,5 @@
-type AddAnimalPayload {
-  data: Animal
-  error: String
+type Query {
+  animals: [Animal!]!
 }
 
 type Animal implements Node {
@@ -11,25 +10,14 @@ type Animal implements Node {
   metadata: AnimalMetadata!
 }
 
-input AnimalInput {
-  name: String!
-  image: url!
-  age: Int!
-  metadataId: ID = null
-  metadataFamilyName: String = null
+interface Node {
+  id: ID!
 }
+
+scalar url
 
 type AnimalMetadata implements Node {
   id: ID!
-  domain: String!
-  kingdom: String!
-  pyhlum: String!
-  Class: String!
-  superfamily: String!
-  family: String!
-}
-
-input MetadataInput {
   domain: String!
   kingdom: String!
   pyhlum: String!
@@ -45,12 +33,18 @@ type Mutation {
   addAnimal(input: AnimalInput!): AddAnimalPayload!
 }
 
-interface Node {
-  id: ID!
+type AddAnimalPayload {
+  data: Animal
+  error: String
 }
 
-type Query {
-  animals: [Animal!]!
+input MetadataInput {
+  domain: String!
+  kingdom: String!
+  pyhlum: String!
+  Class: String!
+  superfamily: String!
+  family: String!
 }
 
 type RemoveMetaDataPayload {
@@ -58,4 +52,10 @@ type RemoveMetaDataPayload {
   error: String
 }
 
-scalar url
+input AnimalInput {
+  name: String!
+  image: url!
+  age: Int!
+  metadataId: ID = null
+  metadataFamilyName: String = null
+}

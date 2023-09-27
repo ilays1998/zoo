@@ -37,16 +37,18 @@ add_subdirectory(qtgql)
 add_subdirectory(src/grapgql/__generated__)
 
 add_executable(${PROJECT_NAME}
-        src/SimpleZooModel.cpp
-        src/SimpleZooModel.hpp
-        src/Animal.cpp
-        src/Animal.hpp
-        src/zooMain.cpp
-        src/Metadata.cpp
-        src/Metadata.hpp
+        src/main.cpp
+        src/grapgql/__generated__/Qu.cpp
+        src/grapgql/__generated__/Qu.hpp
+        src/grapgql/__generated__/RemoveAnimalByName.hpp
+        src/grapgql/__generated__/RemoveAnimalByName.cpp
+        src/grapgql/__generated__/schema.hpp
+
+
+
 )
 
 target_link_libraries(${PROJECT_NAME} PRIVATE qtgql
         Qt6::Core Qt6::Quick
-        Countries
+        Zoo
 )

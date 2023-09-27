@@ -1,11 +1,12 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Layouts
+import QtQuick.Controls.Material
 
 //import QtQuickImage
 //import QtQuick.Controls.Styles 2.0
-ApplicationWindow {
-    width: 400; height: 400
+ApplicationWindow { id:root
+    width: 500; height: 400
     visible: true
     StackView {
         id: stack
@@ -52,30 +53,10 @@ ApplicationWindow {
                     text: "Delete animal"
                     onClicked: {
                         zooModel.deleteAnimal(model.animal.name);
-                        zooModel.foo();
+                        //zooModel.foo();
                     }
 
-                    //TODO: append the image to the property of the model and change the code to represent animal special picture
 
-                    // Item {
-                    //
-                    //     Download {
-                    //
-                    //         url: "http://placehold.it/350x150"
-                    //         destination: "file:///tmp/test.png"
-                    //
-                    //         running: true
-                    //
-                    //         followRedirects: true
-                    //         onRedirected: console.log('Redirected',url,'->',redirectUrl)
-                    //
-                    //         onStarted: console.log('Started download',url)
-                    //         onError: console.error(errorString)
-                    //         onProgressChanged: console.log(url,'progress:',progress)
-                    //         onFinished: console.info(url,'done')
-                    //
-                    //     }
-                    // }
                 }
             }
 

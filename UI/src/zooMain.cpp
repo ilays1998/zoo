@@ -9,7 +9,6 @@
 #include "Animal.hpp"
 #include <QAbstractItemModel>
 #include <filesystem>
-#include <QListView>
 
 namespace fs = std::filesystem;
 int main(int argc, char *argv[])
